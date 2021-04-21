@@ -1,0 +1,28 @@
+ALGORITHM Overlapping_Sum
+VAR
+    set1, set2 : ARRAY_OF INTEGER[10];
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    i,j,key: INTEGER;
+    sum:INTEGER:=0;
+BEGIN
+    FOR i FROM 0 TO 3 DO
+        Read(set1[i]);// insert from user
+    END_FOR
+    FOR i FROM 0 TO 4 DO
+        Read(set2[i]);
+    END_FOR
+
+    FOR i FROM 0 TO set1.length -1 DO
+        key := set1[i];
+        htab.insert(set1[i]);
+    END_FOR 
+
+    FOR j FROM 0 TO set2.length -1 DO
+        key := set2[j];
+        IF (htab.lookup(key) = TRUE) THEN
+            sum:= sum+ key*2;
+        END_IF
+    END_FOR
+
+    Write("Overlapping sum of two arrays: " , sum);
+END
